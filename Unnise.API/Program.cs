@@ -1,3 +1,4 @@
+using Unnise.API.Middleware;
 using Unnise.Application;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -29,6 +30,8 @@ app.UseSwaggerUI(c =>
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "Unnise API v1");
     c.RoutePrefix = string.Empty;
 });
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseHttpsRedirection();
 

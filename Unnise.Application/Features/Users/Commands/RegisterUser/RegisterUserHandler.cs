@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Unnise.Application.Abstractions.Persistence;
 using Unnise.Application.Abstractions.Security;
+using Unnise.Application.Features.Users.Exceptions;
 using Unnise.Domain.Entities;
 
 namespace Unnise.Application.Features.Users.Commands.RegisterUser
@@ -19,10 +20,10 @@ namespace Unnise.Application.Features.Users.Commands.RegisterUser
         public async Task<Guid> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
         {
             if (await _userRepository.IsUsernameTakenAsync(request.Username))
-                throw new ApplicationException("Username sudah digunakan");
+                throw new UsernameTakenException(request.Username);
 
             if (await _userRepository.IsEmailTakenAsync(request.Email))
-                throw new ApplicationException("Email sudah digunakan");
+                throw new EmailTakenException();
 
             var passwordHash = _passwordHasher.Hash(request.Password);
 
