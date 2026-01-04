@@ -15,4 +15,8 @@
     <ProjectReference Include="..\Unnise.Domain\Unnise.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Projects\Commands\" />
+  </ItemGroup>
+
 </Project>

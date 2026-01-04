@@ -3,12 +3,23 @@
     public abstract class BaseEntity
     {
         public Guid Id { get; protected set; }
-        public DateTime CreatedAt { get; protected set; }
-        public DateTime? UpdateAt { get; protected set; }
+        public DateTime CreatedAt { get; private set; }
+        public DateTime? UpdatedAt { get; private set; }
 
-        protected void TouchUpdate()
+        protected BaseEntity(Guid id)
         {
-            UpdateAt = DateTime.UtcNow;
+            Id = id;
+        }
+
+        protected void MarkCreated()
+        {
+            CreatedAt = DateTime.Now;
+        }
+
+        protected void MarkUpdated()
+        {
+            UpdatedAt = DateTime.Now;
         }
     }
+
 }

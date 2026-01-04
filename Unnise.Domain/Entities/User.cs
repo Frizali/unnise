@@ -22,10 +22,11 @@ namespace Unnise.Domain.Entities
         public DateTime? LastLoginAt { get; private set; }
 
         public User(
+            Guid id,
             string username,
             string globalName,
             string email,
-            string passwordHash)
+            string passwordHash) : base(id)
         {
             if (string.IsNullOrWhiteSpace(username))
                 throw new DomainException("Username wajib diisi");
@@ -36,7 +37,6 @@ namespace Unnise.Domain.Entities
             if (string.IsNullOrWhiteSpace(passwordHash))
                 throw new DomainException("Password hash tidak valid");
 
-            Id = Guid.NewGuid();
             Username = username;
             GlobalName = globalName;
             Email = email;
@@ -45,7 +45,7 @@ namespace Unnise.Domain.Entities
             IsActive = true;
             IsVerified = false;
 
-            CreatedAt = DateTime.UtcNow;
+            MarkCreated();
         }
 
         public void Verify()
@@ -54,7 +54,7 @@ namespace Unnise.Domain.Entities
                 throw new DomainException("User sudah terverifikasi");
 
             IsVerified = true;
-            TouchUpdate();
+            MarkUpdated();
         }
 
         public void Deactivate()
@@ -63,7 +63,7 @@ namespace Unnise.Domain.Entities
                 throw new DomainException("User sudah nonaktif");
 
             IsActive = false;
-            TouchUpdate();
+            MarkUpdated();
         }
 
         public void Activate()
@@ -72,7 +72,7 @@ namespace Unnise.Domain.Entities
                 throw new DomainException("User sudah aktif");
 
             IsActive = true;
-            TouchUpdate();
+            MarkUpdated();
         }
 
         public void UpdateProfile(
@@ -90,12 +90,12 @@ namespace Unnise.Domain.Entities
             BannerColor = bannerColor;
             Phone = phone;
 
-            TouchUpdate();
+            MarkUpdated();
         }
 
         public void RecordLogin()
         {
-            LastLoginAt = DateTime.UtcNow;
+            LastLoginAt = DateTime.Now;
         }
     }
 }

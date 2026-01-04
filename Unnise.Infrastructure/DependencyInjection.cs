@@ -17,6 +17,7 @@ namespace Unnise.Application
 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IPasswordHasher, PasswordHasher>();
+            services.AddScoped<IProjectRepository, ProjectRepository>();
 
             return services;
         }

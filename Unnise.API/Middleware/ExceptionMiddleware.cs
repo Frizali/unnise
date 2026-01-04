@@ -23,7 +23,7 @@ namespace Unnise.API.Middleware
             {
                 await WriteProblem(context, 409, "Conflict", ex.Message);
             }
-            catch (ValidationException ex)
+            catch (RequestValidationException ex)
             {
                 await WriteProblem(context, 400, "Validation error", ex.Message);
             }
@@ -65,6 +65,4 @@ namespace Unnise.API.Middleware
             await context.Response.WriteAsJsonAsync(problem);
         }
     }
-
-
 }

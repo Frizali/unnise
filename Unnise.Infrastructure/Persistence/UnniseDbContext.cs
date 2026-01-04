@@ -6,6 +6,7 @@ namespace Unnise.Infrastructure.Persistence
     public class UnniseDbContext : DbContext
     {
         public DbSet<User> Users => Set<User>();
+        public DbSet<Project> Projects => Set<Project>();
 
         public UnniseDbContext(DbContextOptions<UnniseDbContext> options) : base(options)
         {

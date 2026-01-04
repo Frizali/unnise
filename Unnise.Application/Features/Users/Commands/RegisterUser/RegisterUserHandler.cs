@@ -28,6 +28,7 @@ namespace Unnise.Application.Features.Users.Commands.RegisterUser
             var passwordHash = _passwordHasher.Hash(request.Password);
 
             var user = new User(
+                Guid.NewGuid(),
                 request.Username,
                 request.GlobalName,
                 request.Email,
