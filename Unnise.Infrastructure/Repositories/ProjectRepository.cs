@@ -5,13 +5,9 @@ using Unnise.Infrastructure.Persistence;
 
 namespace Unnise.Infrastructure.Repositories
 {
-    public class ProjectRepository : IProjectRepository
+    public class ProjectRepository(UnniseDbContext context) : IProjectRepository
     {
-        readonly UnniseDbContext _context;
-        public ProjectRepository(UnniseDbContext context)
-        {
-            _context = context;
-        }
+        readonly UnniseDbContext _context = context;
 
         public async Task<bool> IsNameUniqueAsync(string name)
         {

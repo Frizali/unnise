@@ -1,9 +1,6 @@
 ﻿namespace Unnise.Application.Common.Exceptions
 {
-    public class AppException : Exception
+    public class AppException(string message) : Exception(message)
     {
-        public AppException(string message) : base(message)
-        {
-        }
     }
 }

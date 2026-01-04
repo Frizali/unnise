@@ -5,12 +5,12 @@ using Unnise.Application.Abstractions.Security;
 using Unnise.Application.Features.Users.Commands.RegisterUser;
 using Unnise.Domain.Entities;
 
-namespace Unnise.Application.Test;
+namespace Unnise.Application.Test.Users;
 
 public class RegisterUserHandlerTest
 {
-    private readonly Mock<IUserRepository> _userRepoMock = new Mock<IUserRepository>();
-    private readonly Mock<IPasswordHasher> _hasherMock = new Mock<IPasswordHasher>();
+    private readonly Mock<IUserRepository> _userRepoMock = new();
+    private readonly Mock<IPasswordHasher> _hasherMock = new();
 
     [Fact]
     public void Handle_Should_Register_User_When_Data_Is_Valid()

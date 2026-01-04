@@ -6,13 +6,9 @@ namespace Unnise.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProjectController : Controller
+    public class ProjectController(IMediator mediator) : Controller
     {
-        readonly IMediator _mediator;
-        public ProjectController(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
+        readonly IMediator _mediator = mediator;
 
         [HttpPost("check-name")]
         public async Task<IActionResult> IsProjectNameAvailable(IsProjectNameAvailableQuery query)

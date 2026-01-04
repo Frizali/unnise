@@ -6,16 +6,10 @@ using Unnise.Domain.Entities;
 
 namespace Unnise.Application.Features.Users.Commands.RegisterUser
 {
-    public class RegisterUserHandler : IRequestHandler<RegisterUserCommand, Guid>
+    public class RegisterUserHandler(IUserRepository userRepository, IPasswordHasher passwordHasher) : IRequestHandler<RegisterUserCommand, Guid>
     {
-        private readonly IUserRepository _userRepository;
-        private readonly IPasswordHasher _passwordHasher;
-
-        public RegisterUserHandler(IUserRepository userRepository, IPasswordHasher passwordHasher)
-        {
-            _userRepository = userRepository;
-            _passwordHasher = passwordHasher;
-        }
+        private readonly IUserRepository _userRepository = userRepository;
+        private readonly IPasswordHasher _passwordHasher = passwordHasher;
 
         public async Task<Guid> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
         {

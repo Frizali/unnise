@@ -5,18 +5,19 @@ using Unnise.Infrastructure.Persistence;
 
 namespace Unnise.Infrastructure.Repositories
 {
-    public class UserRepository : IUserRepository
+    public class UserRepository(UnniseDbContext context) : IUserRepository
     {
-        private readonly UnniseDbContext _context;
-        public UserRepository(UnniseDbContext context)
-        {
-            _context = context;
-        }
+        private readonly UnniseDbContext _context = context;
 
         public async Task AddAsync(User user)
         {
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<User?> GetByIdentityAsync(string identity)
+        {
+            return await _context.Users.FirstOrDefaultAsync(u => EF.Functions.Like(u.Username, identity) || EF.Functions.Like(u.Email, identity));
         }
 
         public async Task<bool> IsEmailTakenAsync(string email)

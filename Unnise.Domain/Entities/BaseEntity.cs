@@ -1,15 +1,10 @@
 ﻿namespace Unnise.Domain.Entities
 {
-    public abstract class BaseEntity
+    public abstract class BaseEntity(Guid id)
     {
-        public Guid Id { get; protected set; }
+        public Guid Id { get; protected set; } = id;
         public DateTime CreatedAt { get; private set; }
         public DateTime? UpdatedAt { get; private set; }
-
-        protected BaseEntity(Guid id)
-        {
-            Id = id;
-        }
 
         protected void MarkCreated()
         {

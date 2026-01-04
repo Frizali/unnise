@@ -4,15 +4,12 @@ using Unnise.Application.Common.Exceptions;
 
 namespace Unnise.Application.Behaviors
 {
-    public sealed class ValidationBehavior<TRequest, TResponse>
+    public sealed class ValidationBehavior<TRequest, TResponse>(
+        IEnumerable<IValidator<TRequest>> validators)
         : IPipelineBehavior<TRequest, TResponse>
+        where TRequest : notnull
     {
-        private readonly IEnumerable<IValidator<TRequest>> _validators;
-
-        public ValidationBehavior(IEnumerable<IValidator<TRequest>> validators)
-        {
-            _validators = validators;
-        }
+        private readonly IEnumerable<IValidator<TRequest>> _validators = validators;
 
         public async Task<TResponse> Handle(
             TRequest request,
@@ -29,13 +26,13 @@ namespace Unnise.Application.Behaviors
                     .Where(f => f != null)
                     .ToList();
 
-                if (failures.Any())
+                if (failures.Count > 0)
                 {
                     throw new RequestValidationException(failures);
                 }
             }
 
-            return await next();
+            return await next(cancellationToken);
         }
     }
 

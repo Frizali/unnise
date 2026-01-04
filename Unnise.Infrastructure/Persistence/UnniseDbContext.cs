@@ -3,14 +3,10 @@ using Unnise.Domain.Entities;
 
 namespace Unnise.Infrastructure.Persistence
 {
-    public class UnniseDbContext : DbContext
+    public class UnniseDbContext(DbContextOptions<UnniseDbContext> options) : DbContext(options)
     {
         public DbSet<User> Users => Set<User>();
         public DbSet<Project> Projects => Set<Project>();
-
-        public UnniseDbContext(DbContextOptions<UnniseDbContext> options) : base(options)
-        {
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

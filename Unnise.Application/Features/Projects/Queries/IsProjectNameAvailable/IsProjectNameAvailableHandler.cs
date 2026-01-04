@@ -3,13 +3,9 @@ using Unnise.Application.Abstractions.Persistence;
 
 namespace Unnise.Application.Features.Projects.Queries.IsProjectNameAvailable
 {
-    public class IsProjectNameAvailableHandler : IRequestHandler<IsProjectNameAvailableQuery, IsProjectNameAvailableResult>
+    public class IsProjectNameAvailableHandler(IProjectRepository projectRepository) : IRequestHandler<IsProjectNameAvailableQuery, IsProjectNameAvailableResult>
     {
-        readonly IProjectRepository _projectRepository;
-        public IsProjectNameAvailableHandler(IProjectRepository projectRepository)
-        {
-            _projectRepository = projectRepository;
-        }
+        readonly IProjectRepository _projectRepository = projectRepository;
 
         public async Task<IsProjectNameAvailableResult> Handle(IsProjectNameAvailableQuery query, CancellationToken cancellationToken)
         {

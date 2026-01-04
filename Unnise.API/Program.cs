@@ -1,5 +1,6 @@
-using Unnise.API.Middleware;
 using Unnise.Application;
+using Unnise.API.Middleware;
+using Unnise.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 

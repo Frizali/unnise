@@ -7,7 +7,7 @@ using Unnise.Infrastructure.Persistence;
 using Unnise.Infrastructure.Repositories;
 using Unnise.Infrastructure.Security;
 
-namespace Unnise.Application
+namespace Unnise.Infrastructure
 {
     public static class DependencyInjection
     {

@@ -7,13 +7,9 @@ namespace Unnise.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class UserController(IMediator mediator) : ControllerBase
     {
-        readonly IMediator _mediator;
-        public UserController(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
+        readonly IMediator _mediator = mediator;
 
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterUserCommand param)
