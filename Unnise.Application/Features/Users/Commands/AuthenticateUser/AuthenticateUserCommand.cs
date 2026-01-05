@@ -1,4 +1,6 @@
-﻿namespace Unnise.Application.Features.Users.Commands.AuthenticateUser
+﻿using MediatR;
+
+namespace Unnise.Application.Features.Users.Commands.AuthenticateUser
 {
-    public record AuthenticateUserCommand(string Identity, string Password);
+    public record AuthenticateUserCommand(string Identity, string Password) : IRequest<string>;
 }

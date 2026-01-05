@@ -1,6 +1,6 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Unnise.Application.Features.Users.Commands.AuthenticateUser;
 using Unnise.Application.Features.Users.Commands.RegisterUser;
 
 namespace Unnise.API.Controllers
@@ -12,10 +12,17 @@ namespace Unnise.API.Controllers
         readonly IMediator _mediator = mediator;
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register(RegisterUserCommand param)
+        public async Task<IActionResult> Register(RegisterUserCommand request)
         {
-            var userId = await _mediator.Send(param);
+            var userId = await _mediator.Send(request);
             return Ok(userId);
+        }
+
+        [HttpPost("authenticate")]
+        public async Task<IActionResult> Authenticate(AuthenticateUserCommand request) 
+        {
+            var token = await _mediator.Send(request);
+            return Ok(token);
         }
     }
 }

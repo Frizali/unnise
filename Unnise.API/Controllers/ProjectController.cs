@@ -11,9 +11,9 @@ namespace Unnise.API.Controllers
         readonly IMediator _mediator = mediator;
 
         [HttpPost("check-name")]
-        public async Task<IActionResult> IsProjectNameAvailable(IsProjectNameAvailableQuery query)
+        public async Task<IActionResult> IsProjectNameAvailable(IsProjectNameAvailableQuery request)
         {
-            var isAvailable = await _mediator.Send(query);
+            var isAvailable = await _mediator.Send(request);
             return Ok(isAvailable);
         }
     }

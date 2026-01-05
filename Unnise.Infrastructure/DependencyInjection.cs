@@ -18,6 +18,7 @@ namespace Unnise.Infrastructure
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IPasswordHasher, PasswordHasher>();
             services.AddScoped<IProjectRepository, ProjectRepository>();
+            services.AddScoped<ITokenGenerator, TokenGenerator>();
 
             return services;
         }
