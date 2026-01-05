@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Unnise.Application\Unnise.Application.csproj" />
+    <ProjectReference Include="..\Unnise.Infrastructure\Unnise.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>

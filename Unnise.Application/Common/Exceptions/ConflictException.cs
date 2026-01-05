@@ -1,9 +1,6 @@
 ﻿namespace Unnise.Application.Common.Exceptions
 {
-    public class ConflictException : AppException
+    public class ConflictException(string message) : AppException(message)
     {
-        public ConflictException(string message) : base(message)
-        {
-        }
     }
 }
