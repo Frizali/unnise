@@ -18,7 +18,8 @@ namespace Unnise.Infrastructure.Security
             var claims = new[]
             {
                 new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
-                new Claim(JwtRegisteredClaimNames.Email, user.Email)
+                new Claim(JwtRegisteredClaimNames.Email, user.Email),
+                new Claim("globalName", user.GlobalName)
             };
 
             var jwtKey = _config["Jwt:Key"];

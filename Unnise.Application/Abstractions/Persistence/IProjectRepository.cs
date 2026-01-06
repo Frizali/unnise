@@ -1,7 +1,11 @@
-﻿namespace Unnise.Application.Abstractions.Persistence
+﻿using Unnise.Domain.Entities;
+
+namespace Unnise.Application.Abstractions.Persistence
 {
     public interface IProjectRepository
     {
-        Task<bool> IsNameUniqueAsync(string name);
+        Task<bool> IsNameUniqueAsync(Guid ownerId, string name);
+
+        Task AddAsync(Project project);
     }
 }
