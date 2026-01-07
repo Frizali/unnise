@@ -18,12 +18,12 @@ namespace Unnise.Application.Features.Projects.Commands.CreateProject
             if (!isUnique) throw new ProjectNameTakenException(request.Name);
 
             var project = new Project(
-                    Guid.NewGuid(),
-                    _currentUser.Id,
-                    request.Name,
-                    request.Description,
-                    request.Visibility
-                );
+              Guid.NewGuid(),
+              _currentUser.Id,
+              request.Name,
+              request.Description,
+              request.Visibility
+            );
 
             await _projectRepository.AddAsync(project);
         }

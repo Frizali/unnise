@@ -18,7 +18,7 @@ namespace Unnise.Infrastructure.Persistence.Configurations
                 .HasMaxLength(50);
 
             builder.Property(x => x.Visibility)
-                .HasDefaultValue(ProjectVisibility.Public);
+                .IsRequired();
 
             builder.Property(x => x.CreatedAt)
                 .IsRequired();
