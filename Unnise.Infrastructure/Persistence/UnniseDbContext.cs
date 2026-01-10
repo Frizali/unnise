@@ -7,6 +7,7 @@ namespace Unnise.Infrastructure.Persistence
     {
         public DbSet<User> Users => Set<User>();
         public DbSet<Project> Projects => Set<Project>();
+        public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -15,6 +15,11 @@ namespace Unnise.Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public async Task<User?> GetByIdAsync(Guid id)
+        {
+            return await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
         public async Task<User?> GetByIdentityAsync(string identity)
         {
             return await _context.Users.FirstOrDefaultAsync(u => EF.Functions.Like(u.Username, identity) || EF.Functions.Like(u.Email, identity));

@@ -1,9 +1,10 @@
-﻿using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Security.Cryptography;
+using System.Text;
 using Unnise.Application.Abstractions.Security;
 using Unnise.Domain.Entities;
 
@@ -13,7 +14,7 @@ namespace Unnise.Infrastructure.Security
     {
         private readonly IConfiguration _config = config;
 
-        public string GenerateToken(User user)
+        public string GenerateAccessToken(User user)
         {
             var claims = new[]
             {
@@ -40,6 +41,14 @@ namespace Unnise.Infrastructure.Security
                 signingCredentials: creds);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+        public string GenerateRefreshToken()
+        {
+            var randomBytes = new byte[64];
+            using var rng = RandomNumberGenerator.Create();
+            rng.GetBytes(randomBytes);
+            return Convert.ToBase64String(randomBytes);
         }
     }
 }

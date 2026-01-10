@@ -12,7 +12,7 @@ namespace Unnise.Infrastructure.Repositories
 
         public async Task AddAsync(Project project)
         {
-            await _context.Projects.AddAsync(project);
+            _context.Projects.Add(project);
             await _context.SaveChangesAsync();
         }
 

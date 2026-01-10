@@ -2,7 +2,7 @@
 
 namespace Unnise.Application.Features.Users.Exceptions
 {
-    public class EmailTakenException() : ConflictException("Email is already registered.")
+    public class UnauthorizedException(string message) : AppException(message)
     {
     }
 }

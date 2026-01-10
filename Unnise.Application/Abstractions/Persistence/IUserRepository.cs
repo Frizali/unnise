@@ -8,6 +8,7 @@ namespace Unnise.Application.Abstractions.Persistence
         Task<bool> IsEmailTakenAsync(string email);
         Task<bool> IsPhoneTakenAsync(string phone);
         Task<User?> GetByIdentityAsync(string identity);
+        Task<User?> GetByIdAsync(Guid id);
 
         Task AddAsync(User user);
     }

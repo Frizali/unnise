@@ -12,10 +12,11 @@ namespace Unnise.Application.Test.Users
     public class AuthenticateUserHandlerTest
     {
         private readonly Mock<IUserRepository> _userRepoMock = new();
+        private readonly Mock<IRefreshTokenRepository> _refreshTokenRespository = new();
         private readonly Mock<IPasswordHasher> _hasherMock = new();
         private readonly Mock<ITokenGenerator> _tokenMock = new();
 
-        private AuthenticateUserHandler CreateHandler() => new(_userRepoMock.Object, _hasherMock.Object, _tokenMock.Object);
+        private AuthenticateUserHandler CreateHandler() => new(_userRepoMock.Object, _refreshTokenRespository.Object, _hasherMock.Object, _tokenMock.Object);
 
         [Fact]
         public async Task Handle_ShouldThrow_WhenUserNotFound()
@@ -38,7 +39,7 @@ namespace Unnise.Application.Test.Users
 
             _userRepoMock.Setup(x => x.GetByIdentityAsync(It.IsAny<string>())).ReturnsAsync(user);
             _hasherMock.Setup(x => x.Verify(It.IsAny<string>(), It.IsAny<string>())).Returns(false);
-            _tokenMock.Setup(x => x.GenerateToken(user)).Returns(expectedToken);
+            _tokenMock.Setup(x => x.GenerateAccessToken(user)).Returns(expectedToken);
 
             var handler = CreateHandler();
             var result = handler.Handle(command, default);

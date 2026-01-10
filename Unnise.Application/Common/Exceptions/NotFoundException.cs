@@ -1,9 +1,6 @@
 ﻿namespace Unnise.Application.Common.Exceptions
 {
-    public class NotFoundException : AppException
+    public class NotFoundException(string message) : AppException(message)
     {
-        public NotFoundException(string message) : base(message)
-        {
-        }
     }
 }

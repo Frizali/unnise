@@ -4,6 +4,7 @@ namespace Unnise.Application.Abstractions.Security
 {
     public interface ITokenGenerator
     {
-        string GenerateToken(User user);
+        string GenerateAccessToken(User user);
+        string GenerateRefreshToken();
     }
 }
