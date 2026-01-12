@@ -20,8 +20,7 @@ namespace Unnise.Application.Features.Users.Commands.GenerateRefreshToken
             if (refreshToken is null || !refreshToken.IsActive)
                 throw new UnauthorizedException("Invalid refresh token.");
 
-            var user = await _userRepository.GetByIdAsync(_currentUser.Id)
-                       ?? throw new UnauthorizedException("User not found.");
+            var user = await _userRepository.GetByIdAsync(_currentUser.Id) ?? throw new UnauthorizedException("User not found.");
 
             var accessToken = _tokenGenerator.GenerateAccessToken(user);
             var newRefreshTokenValue = _tokenGenerator.GenerateRefreshToken();

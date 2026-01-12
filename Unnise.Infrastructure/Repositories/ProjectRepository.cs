@@ -8,7 +8,7 @@ namespace Unnise.Infrastructure.Repositories
 {
     public class ProjectRepository(UnniseDbContext context) : IProjectRepository
     {
-        readonly UnniseDbContext _context = context;
+        private readonly UnniseDbContext _context = context;
 
         public async Task AddAsync(Project project)
         {

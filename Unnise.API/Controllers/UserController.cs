@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Unnise.Application.Features.Users.Commands.AuthenticateUser;
 using Unnise.Application.Features.Users.Commands.GenerateRefreshToken;
@@ -8,7 +9,7 @@ namespace Unnise.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController(IMediator mediator) : ControllerBase
+    public class UserController(IMediator mediator) : Controller
     {
         readonly IMediator _mediator = mediator;
 
@@ -30,6 +31,7 @@ namespace Unnise.API.Controllers
         }
 
         [HttpPost("refresh-token")]
+        [Authorize]
         public async Task<IActionResult> RefreshToken(GenerateRefreshTokenCommand request)
         {
             var result = await _mediator.Send(request);
