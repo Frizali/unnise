@@ -4,8 +4,8 @@ namespace Unnise.Application.Abstractions.Persistence
 {
     public interface IRefreshTokenRepository
     {
-        Task<RefreshToken?> GetByTokenAsync(string token);
         Task AddAsync(RefreshToken refreshToken);
+        Task<RefreshToken?> GetByTokenAsync(string token);
         Task UpdateAsync(RefreshToken refreshToken);
     }
 }

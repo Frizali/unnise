@@ -4,12 +4,12 @@ namespace Unnise.Application.Abstractions.Persistence
 {
     public interface IUserRepository
     {
-        Task<bool> IsUsernameTakenAsync(string username);
+        Task AddAsync(User user);
+
         Task<bool> IsEmailTakenAsync(string email);
         Task<bool> IsPhoneTakenAsync(string phone);
-        Task<User?> GetByIdentityAsync(string identity);
+        Task<bool> IsUsernameTakenAsync(string username);
         Task<User?> GetByIdAsync(Guid id);
-
-        Task AddAsync(User user);
+        Task<User?> GetByIdentityAsync(string identity);
     }
 }

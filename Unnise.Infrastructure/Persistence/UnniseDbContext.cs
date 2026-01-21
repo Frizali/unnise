@@ -5,10 +5,10 @@ namespace Unnise.Infrastructure.Persistence
 {
     public class UnniseDbContext(DbContextOptions<UnniseDbContext> options) : DbContext(options)
     {
-        public DbSet<User> Users => Set<User>();
         public DbSet<Project> Projects => Set<Project>();
-        public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
         public DbSet<ProjectMember> ProjectMembers => Set<ProjectMember>();
+        public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
+        public DbSet<User> Users => Set<User>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

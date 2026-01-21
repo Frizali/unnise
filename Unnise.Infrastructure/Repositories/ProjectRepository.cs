@@ -16,6 +16,11 @@ namespace Unnise.Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public async Task<Project?> GetByIdAsync(Guid projectId)
+        {
+            return await _context.Projects.FirstOrDefaultAsync(p => p.Id == projectId);
+        }
+
         public async Task<bool> IsNameUniqueAsync(Guid ownerId, string name)
         {
             return !await _context.Projects.AnyAsync(p => p.OwnerId == ownerId && EF.Functions.Like(p.Name, name));
