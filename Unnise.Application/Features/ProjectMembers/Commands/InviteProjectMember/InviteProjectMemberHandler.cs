@@ -5,7 +5,7 @@ using Unnise.Domain.Entities;
 
 namespace Unnise.Application.Features.ProjectMembers.Commands.InviteProjectMember
 {
-    public class InviteProjectMemberHandler(IProjectRepository projectRepository, ) : IRequestHandler<InviteProjectMemberCommand>
+    public class InviteProjectMemberHandler(IProjectRepository projectRepository) : IRequestHandler<InviteProjectMemberCommand>
     {
         private readonly IProjectRepository _projectRepository = projectRepository;
 
@@ -21,7 +21,7 @@ namespace Unnise.Application.Features.ProjectMembers.Commands.InviteProjectMembe
                     7
                 );
 
-            await _projectRepository.AddAsync(invitation);
+            //await _projectRepository.AddAsync(invitation);
         }
     }
 }

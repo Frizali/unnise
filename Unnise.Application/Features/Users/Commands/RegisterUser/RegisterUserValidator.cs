@@ -17,6 +17,10 @@ namespace Unnise.Application.Features.Users.Commands.RegisterUser
 
             RuleFor(x => x.Password)
                 .MinimumLength(8);
+
+            RuleFor(x => x.ConfirmPassword)
+                .Equal(x => x.Password)
+                .WithMessage("Password confirmation does not match");
         }
     }
 }
