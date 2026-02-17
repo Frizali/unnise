@@ -6,6 +6,7 @@ namespace Unnise.Application.Features.Users.Commands.RegisterUser
         string Username,
         string GlobalName,
         string Email,
-        string Password
+        string Password,
+        string ConfirmPassword
     ) : IRequest<Guid>;
 }

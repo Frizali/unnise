@@ -20,7 +20,7 @@ public class RegisterUserHandlerTest
         _hasherMock.Setup(x => x.Hash(It.IsAny<string>())).Returns("password");
 
         var handler = new RegisterUserHandler(_userRepoMock.Object, _hasherMock.Object);
-        var command = new RegisterUserCommand("Frizali", "frizali", "frizali@gmail.com", "123456");
+        var command = new RegisterUserCommand("Frizali", "frizali", "frizali@gmail.com", "123456", "123456");
         var result = handler.Handle(command, default);
 
         result.Should().NotBeNull();

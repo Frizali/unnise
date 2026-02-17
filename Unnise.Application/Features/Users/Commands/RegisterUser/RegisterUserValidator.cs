@@ -16,7 +16,13 @@ namespace Unnise.Application.Features.Users.Commands.RegisterUser
                 .EmailAddress();
 
             RuleFor(x => x.Password)
+                .NotEmpty()
                 .MinimumLength(8);
+
+            RuleFor(x => x.ConfirmPassword)
+                .NotEmpty()
+                .Equal(x => x.Password)
+                .WithMessage("Password confirmation does not match");
         }
     }
 }
