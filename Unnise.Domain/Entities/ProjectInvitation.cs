@@ -2,13 +2,31 @@
 
 namespace Unnise.Domain.Entities
 {
-    public class ProjectInvitation(Guid id, Guid projectId, string identity, string role, int expiresInDays) : BaseEntity(id)
+    public class ProjectInvitation : BaseEntity
     {
-        public Guid ProjectId { get; private set; } = projectId;
-        public string Identity { get; private set; } = identity;
-        public string Role { get; private set; } = role;
-        public string Token { get; private set; } = Guid.NewGuid().ToString("N");
-        public DateTime ExpiredAt { get; private set; } = DateTime.Now.AddDays(expiresInDays);
-        public InvitationStatus Status { get; private set; } = InvitationStatus.Pending;
+        public Guid ProjectId { get; private set; }
+        public Guid UserId { get; private set; }
+        public string Role { get; private set; } = null!;
+        public string Token { get; private set; } = null!;
+        public DateTime ExpiredAt { get; private set; }
+        public InvitationStatus Status { get; private set; }
+
+        public ProjectInvitation(
+            Guid id,
+            Guid projectId,
+            Guid userId,
+            string role,
+            int expiresInDays
+        ) : base(id)
+        {
+            ProjectId = projectId;
+            UserId = userId;
+            Role = role;
+            Token = Guid.NewGuid().ToString("N");
+            ExpiredAt = DateTime.UtcNow.AddDays(expiresInDays);
+            Status = InvitationStatus.Pending;
+        }
+
+        private ProjectInvitation() : base(Guid.Empty) { }
     }
 }

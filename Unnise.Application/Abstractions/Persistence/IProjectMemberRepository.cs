@@ -5,5 +5,7 @@ namespace Unnise.Application.Abstractions.Persistence
     public interface IProjectMemberRepository
     {
         Task AddAsync(ProjectMember projectMember);
+
+        Task<bool> IsMemberAlreadyJoined(Guid projectId, Guid userId);
     }
 }

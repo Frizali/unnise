@@ -2,7 +2,7 @@
 
 namespace Unnise.Application.Features.ProjectMembers.Commands.InviteProjectMember
 {
-    public record InviteProjectMemberCommand(Guid ProjectId, string identity, string Role) : IRequest
+    public record InviteProjectMemberCommand(Guid ProjectId, Guid UserId, string Role) : IRequest
     {
     }
 }

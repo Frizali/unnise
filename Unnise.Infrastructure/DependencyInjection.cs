@@ -47,6 +47,8 @@ namespace Unnise.Infrastructure
             services.AddScoped<ITokenGenerator, TokenGenerator>();
             services.AddScoped<ICurrentUser, CurrentUser>();
             services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
+            services.AddScoped<IProjectMemberRepository, ProjectMemberRepository>();
+            services.AddScoped<IProjectInvitationRepository, ProjectInvitationRepository>();
 
             return services;
         }

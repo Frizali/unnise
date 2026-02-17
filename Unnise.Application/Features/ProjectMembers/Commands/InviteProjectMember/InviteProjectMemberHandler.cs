@@ -5,23 +5,25 @@ using Unnise.Domain.Entities;
 
 namespace Unnise.Application.Features.ProjectMembers.Commands.InviteProjectMember
 {
-    public class InviteProjectMemberHandler(IProjectRepository projectRepository, ) : IRequestHandler<InviteProjectMemberCommand>
+    public class InviteProjectMemberHandler(IProjectMemberRepository projectMemberRepository, IProjectInvitationRepository projectInvitationRepository) : IRequestHandler<InviteProjectMemberCommand>
     {
-        private readonly IProjectRepository _projectRepository = projectRepository;
+        private readonly IProjectMemberRepository _projectMemberRepository = projectMemberRepository;
+        private readonly IProjectInvitationRepository _projectInvitationRepository = projectInvitationRepository;
 
         public async Task Handle(InviteProjectMemberCommand request, CancellationToken cancellationToken)
         {
-            var project = await _projectRepository.GetByIdAsync(request.ProjectId) ?? throw new NotFoundException("Project not found");
+            if (await _projectMemberRepository.IsMemberAlreadyJoined(request.ProjectId, request.UserId))
+                throw new ArgumentException("Member already joined");
 
             var invitation = new ProjectInvitation(
                     Guid.NewGuid(),
                     request.ProjectId,
-                    request.identity,
+                    request.UserId,
                     request.Role,
                     7
                 );
 
-            await _projectRepository.AddAsync(invitation);
+            await _projectInvitationRepository.AddAsync(invitation);
         }
     }
 }

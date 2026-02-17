@@ -7,6 +7,7 @@ namespace Unnise.Infrastructure.Persistence
     {
         public DbSet<Project> Projects => Set<Project>();
         public DbSet<ProjectMember> ProjectMembers => Set<ProjectMember>();
+        public DbSet<ProjectInvitation> ProjectInvitations => Set<ProjectInvitation>();
         public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
         public DbSet<User> Users => Set<User>();
 
